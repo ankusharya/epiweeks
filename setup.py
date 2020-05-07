@@ -21,7 +21,7 @@ setup(
         "Development Status :: 5 - Production/Stable",
         "Intended Audience :: Developers",
         "Intended Audience :: Healthcare Industry",
-        "Intended Audience :: Television Industry",
+        "Intended Audience :: Telecommunications Industry",
         "Intended Audience :: Science/Research",
         "License :: OSI Approved :: MIT License",
         "Natural Language :: English",
