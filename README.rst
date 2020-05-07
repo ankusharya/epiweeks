@@ -1,8 +1,8 @@
 Epi Weeks
 =========
 
-A Python package to calculate epidemiological weeks using the CDC (MMWR) and
-ISO week numbering systems.
+A Python package to calculate epidemiological weeks using the CDC (MMWR),
+ISO, BARC week numbering systems.
 
 |travis| |codecov| |docs| |supported| |version| |license|
 
@@ -44,6 +44,7 @@ Features
 - Validation of input data.
 - Works on Python 3.6+ with zero dependencies.
 - Thoroughly tested on all supported Python versions.
+- Add support for Barc (Week start day from Saturday).
 
 Installation
 ------------

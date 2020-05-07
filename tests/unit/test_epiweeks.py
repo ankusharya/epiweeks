@@ -12,27 +12,35 @@ def week_cdc():
 def week_iso():
     return epiweeks.Week(2015, 1, system="iso")
 
+@pytest.fixture(scope="module")
+def week_barc():
+    return epiweeks.Week(2019, 53, system="barc")
 
-def test_week_representation(week_cdc, week_iso):
+
+def test_week_representation(week_cdc, week_iso, week_barc):
     assert week_cdc.__repr__() == "Week(2015, 1, CDC)"
     assert week_iso.__repr__() == "Week(2015, 1, ISO)"
+    assert week_barc.__repr__() == "Week(2019, 53, BARC)"
 
 
-def test_week_string(week_cdc, week_iso):
+def test_week_string(week_cdc, week_iso, week_barc):
     assert week_cdc.__str__() == "201501"
     assert week_iso.__str__() == "2015W01"
+    assert week_barc.__str__() == "2019W53"
 
 
-def test_week_hash(week_cdc, week_iso):
+def test_week_hash(week_cdc, week_iso, week_barc):
     assert week_cdc.__hash__() == hash((2015, 1, "CDC"))
     assert week_iso.__hash__() == hash((2015, 1, "ISO"))
+    assert week_barc.__hash__() == hash((2019, 53, "BARC"))
 
 
-def test_week_equality(week_cdc, week_iso):
+def test_week_equality(week_cdc, week_iso, week_barc):
     assert week_cdc == epiweeks.Week(2015, 1, system="cdc")
     assert week_cdc != epiweeks.Week(2014, 1, system="cdc")
     assert week_iso == epiweeks.Week(2015, 1, system="iso")
     assert week_iso != epiweeks.Week(2014, 1, system="iso")
+    assert week_barc == epiweeks.Week(2019, 53, system="barc")
 
 
 def test_week_ordering(week_cdc, week_iso):
@@ -72,8 +80,8 @@ def test_week_comparison_exception(week_cdc, week_iso, test_input):
     with pytest.raises(TypeError) as e:
         getattr(week_cdc, test_input)(week_iso)
     assert (
-        str(e.value) == "can't compare 'Week' objects with different "
-        "numbering systems"
+            str(e.value) == "can't compare 'Week' objects with different "
+                            "numbering systems"
     )
 
 
@@ -120,6 +128,9 @@ def test_week_fromdate(test_input, expected):
         (("2016-W06", "iso"), (2016, 6)),
         (("2018-W01-2", "iso"), (2018, 1)),
         (("2017W527", "iso"), (2017, 52)),
+        (("2019W53", "barc"), (2019, 53)),
+        (("2016-W06", "barc"), (2016, 6)),
+        (("2018-W01-2", "barc"), (2018, 1)),
     ],
 )
 def test_week_fromstring(test_input, expected):
