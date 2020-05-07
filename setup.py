@@ -6,8 +6,8 @@ readme = (here / "README.rst").read_text(encoding="utf-8")
 changelog = (here / "CHANGELOG.rst").read_text(encoding="utf-8")
 
 setup(
-    name="epiweeks",
-    version="2.1.1",
+    name="epiweeks-barc",
+    version="0.0.1",
     description="Epidemiological weeks based on the CDC (MMWR) and ISO week "
     "numbering systems.",
     long_description="\n".join([readme, changelog]),
